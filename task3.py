@@ -23,6 +23,7 @@
 Подсказка: подробный список операторов для перегрузки доступен по ссылке.
 """
 
+
 class Cell:
     def __init__(self, chromosome):
         self.chromosome = chromosome
@@ -46,12 +47,8 @@ class Cell:
         return f'{self.chromosome}'
 
     def make_order(self, number):
-        res = ''
-        for i in range(0, self.chromosome // number):
-            __string = '*' * number + '\n'
-            res += __string
-        res += '*' * abs(self.chromosome % number) + '\n'
-        return res
+        return ('*' * number + '\n') * (self.chromosome // number) + ('*' * abs(self.chromosome % number) + '\n')
+
 
 cl1 = Cell(10)
 cl2 = Cell(7)
@@ -68,4 +65,3 @@ print(a.make_order(4))
 a = Cell(25)
 print('25 x 7')
 print(a.make_order(7))
-
