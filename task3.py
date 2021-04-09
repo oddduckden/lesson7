@@ -24,3 +24,48 @@
 """
 
 class Cell:
+    def __init__(self, chromosome):
+        self.chromosome = chromosome
+
+    def __add__(self, other):
+        return Cell(self.chromosome + other.chromosome)
+
+    def __sub__(self, other):
+        if self.chromosome - other.chromosome > 0:
+            return Cell(self.chromosome - other.chromosome)
+        else:
+            return f'cell goes away'
+
+    def __mul__(self, other):
+        return Cell(self.chromosome * other.chromosome)
+
+    def __truediv__(self, other):
+        return Cell(self.chromosome // other.chromosome)
+
+    def __str__(self):
+        return f'{self.chromosome}'
+
+    def make_order(self, number):
+        res = ''
+        for i in range(0, self.chromosome // number):
+            __string = '*' * number + '\n'
+            res += __string
+        res += '*' * abs(self.chromosome % number) + '\n'
+        return res
+
+cl1 = Cell(10)
+cl2 = Cell(7)
+print('cell1 = 10, cell2 = 7')
+print(f'cl1 + cl2 = {cl1 + cl2}')
+print(f'cl1 - cl2 = {cl1 - cl2}')
+print(f'cl2 - cl1 = {cl2 - cl1}')
+print(f'cl1 * cl2 = {cl1 * cl2}')
+print(f'cl1 / cl2 = {cl1 / cl2}')
+print()
+a = Cell(13)
+print('13 x 4')
+print(a.make_order(4))
+a = Cell(25)
+print('25 x 7')
+print(a.make_order(7))
+
