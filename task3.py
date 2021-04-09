@@ -23,4 +23,41 @@
 Подсказка: подробный список операторов для перегрузки доступен по ссылке.
 """
 
+
 class Cell:
+    def __init__(self, chromosome):
+        self.chromosome = chromosome
+
+    def __add__(self, other):
+        return Cell(self.chromosome + other.chromosome)
+
+    def __sub__(self, other):
+        if self.chromosome - other.chromosome > 0:
+            return Cell(self.chromosome - other.chromosome)
+        else:
+            return f'cell goes away'
+
+    def __mul__(self, other):
+        return Cell(self.chromosome * other.chromosome)
+
+    def __truediv__(self, other):
+        return Cell(self.chromosome // other.chromosome)
+
+    def __str__(self):
+        return f'{self.chromosome}'
+
+    def make_order(self, number):
+        return ('*' * number + '\n') * (self.chromosome // number) + ('*' * abs(self.chromosome % number) + '\n')
+
+
+cl1 = Cell(int(input('Enter quantity of chromosomes into the first cell: ')))
+cl2 = Cell(int(input('Enter quantity of chromosomes into the second cell: ')))
+print(f'cl1 + cl2 = {cl1 + cl2}')
+print(f'cl1 - cl2 = {cl1 - cl2}')
+print(f'cl2 - cl1 = {cl2 - cl1}')
+print(f'cl1 * cl2 = {cl1 * cl2}')
+print(f'cl1 / cl2 = {cl1 / cl2}')
+print()
+a = Cell(int(input('Enter quantity of chromosomes into the cell: ')))
+num = int(input('Enter number of chromosomes into the row: '))
+print(a.make_order(num))
